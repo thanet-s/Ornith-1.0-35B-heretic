@@ -3,6 +3,12 @@
 Docker-contained Heretic 1.4.0 project for creating a local heretic/abliterated
 artifact from `deepreinforce-ai/Ornith-1.0-35B` on the DGX Spark.
 
+## Prebuilt model
+
+If you do not want to run Heretic yourself, the exported model is available on
+Hugging Face:
+[thanet-s/Ornith-1.0-35B-heretic](https://huggingface.co/thanet-s/Ornith-1.0-35B-heretic).
+
 This directory produces an unquantized Heretic artifact:
 
 - source model: `deepreinforce-ai/Ornith-1.0-35B`
