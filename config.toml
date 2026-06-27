@@ -1,6 +1,4 @@
 # Heretic 1.4.0 config for deepreinforce-ai/Ornith-1.0-35B.
-# This keeps the first artifact unquantized/BF16-style; quantization to a
-# GB10-oriented NVFP4-FP8Dense layout should be a separate second phase.
 
 dtypes = [
     "bfloat16",

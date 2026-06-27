@@ -3,18 +3,15 @@
 Docker-contained Heretic 1.4.0 project for creating a local heretic/abliterated
 artifact from `deepreinforce-ai/Ornith-1.0-35B` on the DGX Spark.
 
-This directory intentionally produces the first-stage unquantized artifact only:
+This directory produces an unquantized Heretic artifact:
 
 - source model: `deepreinforce-ai/Ornith-1.0-35B`
 - output model: `output/Ornith-1.0-35B-heretic`
 - Heretic version: `1.4.0`
-- quantization while running Heretic: `none`
+- quantization: `none`
 - Docker base: `nvcr.io/nvidia/pytorch:26.05-py3`
 - HF cache: `${HOME}/.cache/huggingface` on the DGX, mounted to
   `/root/.cache/huggingface` in the container
-
-The GB10 `NVFP4-FP8Dense` quantization should be done as a separate second
-phase after this output reloads and evaluates correctly.
 
 ## Commands
 
