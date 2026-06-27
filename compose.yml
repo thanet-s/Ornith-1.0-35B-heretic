@@ -1,0 +1,31 @@
+services:
+  heretic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ornith-heretic:1.4.0
+    container_name: ornith-heretic
+    gpus: all
+    ipc: host
+    shm_size: 32g
+    working_dir: /workspace
+    environment:
+      HF_HOME: /root/.cache/huggingface
+      HUGGINGFACE_HUB_CACHE: /root/.cache/huggingface/hub
+      TRANSFORMERS_CACHE: /root/.cache/huggingface/hub
+      HF_HUB_ENABLE_HF_TRANSFER: "1"
+      PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+      TOKENIZERS_PARALLELISM: "false"
+    volumes:
+      - ./:/workspace
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+      - ./output:/workspace/output
+      - ./checkpoints:/workspace/checkpoints
+      - ./plots:/workspace/plots
+    restart: "no"
+    command: ["/bin/bash"]
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "5"
