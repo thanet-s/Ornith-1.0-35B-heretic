@@ -1,0 +1,29 @@
+{
+  "branch": "v2-mpoa-800",
+  "source_model": "deepreinforce-ai/Ornith-1.0-35B",
+  "output_model": "output/Ornith-1.0-35B-heretic",
+  "heretic_version": "1.4.0",
+  "docker_base": "nvcr.io/nvidia/pytorch:26.05-py3",
+  "run": {
+    "n_trials": 800,
+    "n_startup_trials": 200,
+    "study_checkpoint_dir": "checkpoints-v2-mpoa-800",
+    "kl_divergence_target": 0.01,
+    "orthogonalize_direction": true,
+    "row_normalization": "full",
+    "full_normalization_lora_rank": 3
+  },
+  "component_patch": {
+    "attn.o_proj": "layer.self_attn.o_proj",
+    "attn.out_proj": "layer.linear_attn.out_proj",
+    "mlp.down_proj": "layer.mlp.shared_expert.down_proj",
+    "excluded": {
+      "layer.mlp.experts.down_proj": "packed Tensor parameter, not a LoRA-compatible nn.Module in Heretic 1.4.0"
+    }
+  },
+  "baselines": {
+    "base_refusals": "90/100",
+    "v1_refusals": "53/100",
+    "v1_kl_divergence": 0.0063087488524615765
+  }
+}

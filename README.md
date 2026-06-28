@@ -3,6 +3,10 @@
 Docker-contained Heretic 1.4.0 project for creating a local heretic/abliterated
 artifact from `deepreinforce-ai/Ornith-1.0-35B` on the DGX Spark.
 
+This branch is the v2 MPOA-style 800-trial run. It keeps the v1 low-KL
+settings but patches Heretic component discovery inside Docker so Ornith exposes
+`attn.o_proj`, `attn.out_proj`, and `mlp.down_proj`.
+
 ## Prebuilt model
 
 If you do not want to run Heretic yourself, the exported model is available on
@@ -33,6 +37,12 @@ Smoke check:
 docker compose run --rm heretic /workspace/scripts/smoke-check.sh
 ```
 
+Inspect v2 components:
+
+```bash
+docker compose run --rm --no-deps heretic python3 /workspace/scripts/inspect-components-v2.py
+```
+
 Optional pre-download:
 
 ```bash
@@ -42,7 +52,7 @@ docker compose run --rm heretic /workspace/scripts/download-model.sh
 Run Heretic:
 
 ```bash
-docker compose run --name ornith-heretic-run heretic /workspace/scripts/run-heretic.sh
+docker compose run --name ornith-heretic-v2-mpoa-800 heretic /workspace/scripts/run-heretic-v2-mpoa-800.sh
 ```
 
 The runner chooses the first Pareto-optimal trial when optimization completes,
@@ -55,13 +65,13 @@ output/Ornith-1.0-35B-heretic
 Follow logs:
 
 ```bash
-docker logs -f ornith-heretic-run
+docker logs -f ornith-heretic-v2-mpoa-800
 ```
 
 Resume after interruption:
 
 ```bash
-docker compose run --name ornith-heretic-run heretic /workspace/scripts/run-heretic.sh
+docker compose run --name ornith-heretic-v2-mpoa-800 heretic /workspace/scripts/run-heretic-v2-mpoa-800.sh
 ```
 
 ## HF token

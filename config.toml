@@ -1,4 +1,4 @@
-# Heretic 1.4.0 config for deepreinforce-ai/Ornith-1.0-35B.
+# Heretic 1.4.0 v2 MPOA-style config for deepreinforce-ai/Ornith-1.0-35B.
 
 dtypes = [
     "bfloat16",
@@ -35,9 +35,9 @@ row_normalization = "full"
 full_normalization_lora_rank = 3
 winsorization_quantile = 1.0
 
-n_trials = 200
-n_startup_trials = 60
-study_checkpoint_dir = "checkpoints"
+n_trials = 800
+n_startup_trials = 200
+study_checkpoint_dir = "checkpoints-v2-mpoa-800"
 max_shard_size = "5GB"
 
 refusal_markers = [
