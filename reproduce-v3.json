@@ -1,0 +1,43 @@
+{
+  "branch": "v3-from-v1-relaxed-kl",
+  "source_model": "thanet-s/Ornith-1.0-35B-heretic",
+  "base_reference_model": "deepreinforce-ai/Ornith-1.0-35B",
+  "output_model": "output/Ornith-1.0-35B-heretic-v3-from-v1",
+  "heretic_version": "1.4.0",
+  "docker_base": "nvcr.io/nvidia/pytorch:26.05-py3",
+  "run": {
+    "n_trials": 400,
+    "n_startup_trials": 100,
+    "study_checkpoint_dir": "checkpoints-v3-from-v1-relaxed-kl",
+    "kl_divergence_target": 0.02,
+    "orthogonalize_direction": true,
+    "row_normalization": "full",
+    "full_normalization_lora_rank": 3
+  },
+  "component_patch": {
+    "attn.o_proj": "layer.self_attn.o_proj",
+    "attn.out_proj": "layer.linear_attn.out_proj",
+    "mlp.down_proj": "layer.mlp.shared_expert.down_proj",
+    "excluded": {
+      "layer.mlp.experts.down_proj": "packed Tensor parameter, not a LoRA-compatible nn.Module in Heretic 1.4.0"
+    }
+  },
+  "baselines": {
+    "base_refusals": "90/100",
+    "v1_refusals": "53/100",
+    "v1_kl_divergence_vs_base": 0.0063087488524615765,
+    "v2_refusals": "59/100",
+    "v2_kl_divergence": 0.0027
+  },
+  "acceptance_gate": {
+    "must_beat_v1_refusals": true,
+    "max_refusals_to_promote": "52/100",
+    "ideal_refusals": "20-35/100",
+    "sanity_tests": [
+      "coding",
+      "tool-use",
+      "vision",
+      "harmless-chat"
+    ]
+  }
+}

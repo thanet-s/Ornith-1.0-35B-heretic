@@ -2,6 +2,7 @@ cache/
 checkpoints*/
 output/
 plots/
+run-v3-from-v1/
 
 __pycache__/
 *.py[cod]
