@@ -1,6 +1,6 @@
 # Ornith-1.0-35B-heretic v3 From-base Relaxed-KL Results
 
-Status: prepared, not yet evaluated.
+Status: running on DGX Spark.
 
 This branch is a third Heretic 1.4.0 experiment. It starts from the original
 Ornith base model and relaxes the KL target to search for a lower refusal count.
@@ -19,6 +19,7 @@ orthogonalize_direction: true
 row_normalization: full
 full_normalization_lora_rank: 3
 study_checkpoint_dir: checkpoints-v3-from-base-relaxed-kl
+runtime_checkpoint_journal: run-v3-from-base/checkpoints-v3-from-base-relaxed-kl/deepreinforce-ai--Ornith-1--0-35B.jsonl
 ```
 
 ## Baselines
@@ -30,6 +31,22 @@ v1_kl_divergence_vs_base: 0.0063087488524615765
 v2_selected_trial: 351
 v2_refusals: 59/100
 v2_kl_divergence: 0.0027
+```
+
+## Current Progress
+
+Last checked: 2026-07-01 18:02:08 +07:00.
+
+```text
+container: ornith-heretic-v3-from-base-relaxed-kl
+source_model_verified: deepreinforce-ai/Ornith-1.0-35B
+bad_source_seen: false
+initial_refusals: 90/100
+completed_trials: 2/400
+best_trial_so_far: trial 2
+best_refusals_so_far: 81/100
+best_kl_so_far: 0.0005
+beats_v1: false
 ```
 
 ## Acceptance Gate

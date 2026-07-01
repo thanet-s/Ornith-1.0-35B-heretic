@@ -9,6 +9,7 @@
     "n_trials": 400,
     "n_startup_trials": 100,
     "study_checkpoint_dir": "checkpoints-v3-from-base-relaxed-kl",
+    "runtime_checkpoint_journal": "run-v3-from-base/checkpoints-v3-from-base-relaxed-kl/deepreinforce-ai--Ornith-1--0-35B.jsonl",
     "kl_divergence_target": 0.02,
     "orthogonalize_direction": true,
     "row_normalization": "full",
