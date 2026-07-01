@@ -25,5 +25,17 @@
     "base_refusals": "90/100",
     "v1_refusals": "53/100",
     "v1_kl_divergence": 0.0063087488524615765
+  },
+  "result": {
+    "status": "completed_not_accepted",
+    "completed_trials": 800,
+    "selected_trial": 351,
+    "selected_trial_refusals": "59/100",
+    "selected_trial_kl_divergence": 0.0027,
+    "beat_v1_low_kl": false,
+    "container": "ornith-heretic-v2-mpoa-800",
+    "container_exit_code": 0,
+    "saved_output": "output/Ornith-1.0-35B-heretic",
+    "journal": "checkpoints-v2-mpoa-800/deepreinforce-ai--Ornith-1--0-35B.jsonl"
   }
 }
