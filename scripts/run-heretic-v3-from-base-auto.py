@@ -13,20 +13,20 @@ import pexpect
 from patch_heretic_v2 import patch_heretic_model_source
 
 
-model_id = os.environ.get("MODEL_ID", "thanet-s/Ornith-1.0-35B-heretic")
+model_id = os.environ.get("MODEL_ID", "deepreinforce-ai/Ornith-1.0-35B")
 output_dir = os.environ.get(
     "OUTPUT_DIR",
-    "/workspace/output/Ornith-1.0-35B-heretic-v3-from-v1",
+    "/workspace/output/Ornith-1.0-35B-heretic-v3-from-base",
 )
 config_path = Path(os.environ.get("HERETIC_CONFIG", "/workspace/config-v3.toml"))
-run_dir = Path(os.environ.get("HERETIC_RUN_DIR", "/workspace/run-v3-from-v1"))
+run_dir = Path(os.environ.get("HERETIC_RUN_DIR", "/workspace/run-v3-from-base"))
 
 
 def assert_v3_config(config: dict) -> None:
     expected = {
         "n_trials": 400,
         "n_startup_trials": 100,
-        "study_checkpoint_dir": "checkpoints-v3-from-v1-relaxed-kl",
+        "study_checkpoint_dir": "checkpoints-v3-from-base-relaxed-kl",
         "kl_divergence_target": 0.02,
         "orthogonalize_direction": True,
         "row_normalization": "full",
@@ -45,7 +45,7 @@ def prepare_run_dir() -> None:
     run_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(config_path, run_dir / "config.toml")
     Path(output_dir).mkdir(parents=True, exist_ok=True)
-    Path("/workspace/checkpoints-v3-from-v1-relaxed-kl").mkdir(parents=True, exist_ok=True)
+    Path("/workspace/checkpoints-v3-from-base-relaxed-kl").mkdir(parents=True, exist_ok=True)
     Path("/workspace/plots").mkdir(parents=True, exist_ok=True)
 
 
@@ -65,7 +65,7 @@ print(f"[runner:v3] config: {config_path}", flush=True)
 print(f"[runner:v3] run_dir: {run_dir}", flush=True)
 print(f"[runner:v3] output_dir: {output_dir}", flush=True)
 print("[runner:v3] components: attn.o_proj, attn.out_proj, mlp.down_proj", flush=True)
-print("[runner:v3] source: accepted v1 HF model", flush=True)
+print("[runner:v3] source: original Ornith base model", flush=True)
 
 if os.environ.get("DRY_RUN") == "1":
     print("[runner:v3] dry run complete; not launching Heretic", flush=True)

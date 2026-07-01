@@ -1,4 +1,4 @@
-# Heretic 1.4.0 v3 config for a second pass from the accepted v1 model.
+# Heretic 1.4.0 v3 config for a relaxed-KL run from the original base model.
 
 dtypes = [
     "bfloat16",
@@ -37,7 +37,7 @@ winsorization_quantile = 1.0
 
 n_trials = 400
 n_startup_trials = 100
-study_checkpoint_dir = "checkpoints-v3-from-v1-relaxed-kl"
+study_checkpoint_dir = "checkpoints-v3-from-base-relaxed-kl"
 max_shard_size = "5GB"
 
 refusal_markers = [

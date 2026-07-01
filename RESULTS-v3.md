@@ -1,17 +1,16 @@
-# Ornith-1.0-35B-heretic v3 From-v1 Relaxed-KL Results
+# Ornith-1.0-35B-heretic v3 From-base Relaxed-KL Results
 
 Status: prepared, not yet evaluated.
 
-This branch is a third Heretic 1.4.0 experiment. Unlike v2, it starts from the
-accepted v1 Heretic model instead of the original base model, and relaxes the KL
-target to search for a lower refusal count.
+This branch is a third Heretic 1.4.0 experiment. It starts from the original
+Ornith base model and relaxes the KL target to search for a lower refusal count.
 
 ## Run
 
 ```text
-source_model: thanet-s/Ornith-1.0-35B-heretic
+source_model: deepreinforce-ai/Ornith-1.0-35B
 base_reference_model: deepreinforce-ai/Ornith-1.0-35B
-output: output/Ornith-1.0-35B-heretic-v3-from-v1
+output: output/Ornith-1.0-35B-heretic-v3-from-base
 heretic: 1.4.0
 n_trials: 400
 n_startup_trials: 100
@@ -19,7 +18,7 @@ kl_divergence_target: 0.02
 orthogonalize_direction: true
 row_normalization: full
 full_normalization_lora_rank: 3
-study_checkpoint_dir: checkpoints-v3-from-v1-relaxed-kl
+study_checkpoint_dir: checkpoints-v3-from-base-relaxed-kl
 ```
 
 ## Baselines
@@ -68,13 +67,13 @@ packed MoE expert down projection as a tensor parameter rather than an
 Dry run:
 
 ```bash
-docker compose run --rm --no-deps -e DRY_RUN=1 heretic /workspace/scripts/run-heretic-v3-from-v1.sh
+docker compose run --rm --no-deps -e DRY_RUN=1 heretic /workspace/scripts/run-heretic-v3-from-base.sh
 ```
 
 Run:
 
 ```bash
-docker compose run --name ornith-heretic-v3-from-v1-relaxed-kl heretic /workspace/scripts/run-heretic-v3-from-v1.sh
+docker compose run --name ornith-heretic-v3-from-base-relaxed-kl heretic /workspace/scripts/run-heretic-v3-from-base.sh
 ```
 
 Evaluate the exported v3 model against the original base, if accepted:
@@ -82,5 +81,5 @@ Evaluate the exported v3 model against the original base, if accepted:
 ```bash
 docker compose run --rm --no-deps heretic heretic \
   --model deepreinforce-ai/Ornith-1.0-35B \
-  --evaluate-model /workspace/output/Ornith-1.0-35B-heretic-v3-from-v1
+  --evaluate-model /workspace/output/Ornith-1.0-35B-heretic-v3-from-base
 ```

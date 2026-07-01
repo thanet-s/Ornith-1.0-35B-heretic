@@ -1,14 +1,14 @@
 {
-  "branch": "v3-from-v1-relaxed-kl",
-  "source_model": "thanet-s/Ornith-1.0-35B-heretic",
+  "branch": "v3-from-base-relaxed-kl",
+  "source_model": "deepreinforce-ai/Ornith-1.0-35B",
   "base_reference_model": "deepreinforce-ai/Ornith-1.0-35B",
-  "output_model": "output/Ornith-1.0-35B-heretic-v3-from-v1",
+  "output_model": "output/Ornith-1.0-35B-heretic-v3-from-base",
   "heretic_version": "1.4.0",
   "docker_base": "nvcr.io/nvidia/pytorch:26.05-py3",
   "run": {
     "n_trials": 400,
     "n_startup_trials": 100,
-    "study_checkpoint_dir": "checkpoints-v3-from-v1-relaxed-kl",
+    "study_checkpoint_dir": "checkpoints-v3-from-base-relaxed-kl",
     "kl_divergence_target": 0.02,
     "orthogonalize_direction": true,
     "row_normalization": "full",
